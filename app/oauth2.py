@@ -1,4 +1,3 @@
-from os import PathLike
 from jose import JOSEError, jwt
 from datetime import datetime, time, timedelta
 from fastapi import status, HTTPException, Depends

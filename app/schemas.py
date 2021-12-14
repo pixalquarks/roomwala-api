@@ -3,6 +3,8 @@ from pydantic import BaseModel, EmailStr
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 from typing import Optional
 
+from app.models import Owner
+
 
 class User(BaseModel):
     name : str
@@ -30,5 +32,23 @@ class Token(BaseModel):
     token_type : str
     
 class TokenData(BaseModel):
-    id : Optional[str] = None
+    id : int = None
     name : str
+    
+class Flat(BaseModel):
+    address : str
+    price : int
+    bhk : int
+    images : str = ""
+    saxx_preference : int = 0
+    furnishing : int = 0
+    electricity : int = 0
+    water : int = 0
+    locality : str
+    description : str
+    
+class FlatOut(Flat):
+    owner : UserOut
+    
+    class Config:
+        orm_mode = True
