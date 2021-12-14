@@ -17,7 +17,7 @@ depends_on = None
 
 
 def upgrade():
-    op.add_column('flats', sa.Column('images', sa.String(250), server_default=sa.text('"NA"')))
+    op.add_column('flats', sa.Column('images', sa.String(250), server_default=sa.text(" 'NA' ")))
     op.add_column('flats', sa.Column('saxx_preference', sa.Integer(), server_default=sa.text("0")))
     op.add_column('flats', sa.Column('furnishing', sa.Integer(), server_default=sa.text('0')))
     op.add_column('flats', sa.Column('electricity', sa.Integer(), server_default=sa.text('0')))
