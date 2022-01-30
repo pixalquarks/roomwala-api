@@ -27,6 +27,24 @@ async def signup_user(n_user: schemas.Owner, db: Session = Depends(get_db)):
     
     return new_user
 
+
+@router.delete("/{id}", status_code=status.HTTP_200_OK)
+def delete_owner(id : int, db : Session = Depends(get_db), current_user : schemas.TokenData = Depends(oauth2.get_current_user)):
+    owner_query = db.query(models.Owner).filter(models.Owner.id == id)
+
+    if not owner_query.first():
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"Owner with id {id} does not exists")
+    if owner_query.first().id != current_user.id:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
+                            detail=f"forbidden to perform requested action")
+    
+    owner_query.delete(synchronize_session=False)
+    db.commit()
+
+    return {"message" : "user deleted successfully"}
+
+
 @router.get("/{id}", status_code=status.HTTP_200_OK, response_model=schemas.OwnerOut)
 def get_user(id: int, db: Session = Depends(get_db)):
     user = db.query(models.Owner).filter(models.Owner.id == id).first()
