@@ -24,7 +24,7 @@ def owner_login(owner_credentials: OAuth2PasswordRequestForm = Depends(), db : S
         print("invalid pass")
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f"invalid login credentials")
     
-    access_token = oauth2.create_access_token(data={"owner_id" : owner.id, "owner_name" : owner.name})
+    access_token = oauth2.create_access_token(data={"owner_id" : owner.id})
     
     return {"access_token" : access_token, "token_type" : "bearer"}
     

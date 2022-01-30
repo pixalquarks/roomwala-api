@@ -1,18 +1,18 @@
 from datetime import datetime
 from pydantic import BaseModel, EmailStr
 from sqlalchemy.sql.sqltypes import TIMESTAMP
-from typing import Optional
+from typing import Optional, List
 
 from app.models import Owner
 
 
-class User(BaseModel):
+class Owner(BaseModel):
     name : str
     mobile : str
     email : EmailStr
     password : str
     
-class UserOut(BaseModel):
+class OwnerOut(BaseModel):
     id : int
     name : str
     mobile : str
@@ -22,7 +22,7 @@ class UserOut(BaseModel):
     class Config:
         orm_mode = True
     
-class UserLogin(BaseModel):
+class OwnerLogin(BaseModel):
     email : EmailStr
     password : str
     
@@ -48,7 +48,11 @@ class Flat(BaseModel):
     description : str
     
 class FlatOut(Flat):
-    owner : UserOut
+    owner : OwnerOut
     
     class Config:
         orm_mode = True
+
+
+class EmailSchema(BaseModel):
+    email : List[EmailStr]
