@@ -31,7 +31,7 @@ async def send_mail(email : List, user: OwnerOut):
                     <br>
                     <h4>Thanks for registering on roomwala</h4>
                     <p>Please click on the link below to activate your account</p>
-                    <a href="http://localhost:8000/verification/?token={token}">Activate your account</a>
+                    <a href="http://localhost:8000/auth/verification/?token={token}">Activate your account</a>
                 </div>
             </body>
         </html>

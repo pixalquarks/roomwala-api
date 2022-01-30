@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.params import Body
 from passlib.context import CryptContext
@@ -28,7 +28,7 @@ app.include_router(owner.router)
 app.include_router(auth.router)
 app.include_router(flats.router)
 
-@app.get("/")
+@app.get("/", status_code=status.HTTP_200_OK)
 def home():
     return {"message" : "Hello, World!!!"}
 

@@ -32,11 +32,11 @@ def verify_access_token(token: str, credentials_exception):
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
     
         id : str = payload.get("owner_id")
-        name : str = payload.get("owner_name")
+        # name : str = payload.get("owner_name")
     
         if id is None:
             raise credentials_exception
-        token_data = schemas.TokenData(id=id, name=name)
+        token_data = schemas.TokenData(id=id)
     except JWTError:
         raise credentials_exception
     
@@ -46,5 +46,4 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
     credentials_exception = HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                                           detail=f"Could not validate credentials",
                                           headers={"WWW-Authenticate" : "Bearer"})
-    
     return verify_access_token(token, credentials_exception)
