@@ -14,6 +14,7 @@ class Owner(Base):
     mobile = Column(String(10), nullable=False)
     email = Column(String(32), nullable=False, unique=True)
     password = Column(String(60), nullable=False)
+    activated = Column(Integer, server_default=text('0'))
     verified = Column(Integer, server_default=text('0'))
     created_at = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text("now()"))
 

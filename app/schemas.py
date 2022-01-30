@@ -3,7 +3,7 @@ from pydantic import BaseModel, EmailStr
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 from typing import Optional, List
 
-from app.models import Owner
+# from app.models import Owner
 
 
 class Owner(BaseModel):
@@ -17,6 +17,7 @@ class OwnerOut(BaseModel):
     name : str
     mobile : str
     email : EmailStr
+    activated : int
     created_at : datetime
     
     class Config:
@@ -33,7 +34,6 @@ class Token(BaseModel):
     
 class TokenData(BaseModel):
     id : int = None
-    name : str
     
 class Flat(BaseModel):
     address : str
