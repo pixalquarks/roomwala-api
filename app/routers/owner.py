@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from .. import schemas, models, oauth2
 from .. import utils
 from ..database import get_db
-from app.email import send_mail
+from app.email import generate_auth_url, send_mail
 
 router = APIRouter(
     prefix="/owner"
@@ -23,7 +23,8 @@ async def signup_user(n_user: schemas.Owner, db: Session = Depends(get_db)):
         raise HTTPException(status_code=status.HTTP_409_CONFLICT,
                             detail=f"User with email : {n_user.email} already exists.")
 
-    await send_mail([n_user.email], new_user)
+    # await send_mail([n_user.email], new_user)
+    generate_auth_url(new_user)
     
     return new_user
 
