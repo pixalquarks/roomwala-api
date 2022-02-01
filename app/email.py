@@ -17,8 +17,20 @@ conf = ConnectionConfig(
     USE_CREDENTIALS = True
 )
 
+# Only to be used for testing purposes
+def generate_auth_url(user : OwnerOut):
+    token = create_access_token(data = {"owner_id" : user.id})
+    url = f"http://localhost:8000/auth/verification/?token={token}"
+    with open("url.txt", "w") as fo:
+        fo.write(url)
+
+
+
+
 async def send_mail(email : List, user: OwnerOut):
     token = create_access_token(data={"owner_id" : user.id})
+
+    url = f"http://localhost:8000/auth/verification/?token={token}"
 
     template = f"""
         <!DOCTYPE html>
@@ -31,7 +43,7 @@ async def send_mail(email : List, user: OwnerOut):
                     <br>
                     <h4>Thanks for registering on roomwala</h4>
                     <p>Please click on the link below to activate your account</p>
-                    <a href="http://localhost:8000/auth/verification/?token={token}">Activate your account</a>
+                    <a href="{url}">Activate your account</a>
                 </div>
             </body>
         </html>
