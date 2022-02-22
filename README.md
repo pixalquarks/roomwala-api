@@ -35,7 +35,7 @@ And then simply follow the installation guide and you're good to go.
 Then open the xampp control panel and run the sql server and that's it.
 
 ### SETTING UP ENVIROMENT VARAIBLES
-Open the .env.txt file in a text editor and setup the enviroment varaibles accordingly.
+Open the .env.txt file in a text editor and setup the enviroment varaibles accordingly. Refer to [this](./Environment.md) to better unserstand how to setup enviroment variables.
 Now rename it to .env
 
 ### CREATING DATABASE
