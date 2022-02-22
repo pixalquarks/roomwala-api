@@ -1,8 +1,9 @@
-# roomwala-api
+# ROOMWALA-API  
 
 A RESTful API build on top of Python's [FASTAPI](https://fastapi.tiangolo.com/) framework.
 
 ## HOW TO RUN THE PROJECT LOCALLY
+Make sure you have git and python(preferably 3.9) installed locally.
 
 ### GETTING A LOCAL COPY OF THE REPOSITORY
 Start by cloning the master branch onto your local machine
